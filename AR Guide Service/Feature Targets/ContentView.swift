@@ -50,7 +50,8 @@ struct ContentView: View {
                         }
                     }
             }label: {
-                Text( "Add Box")
+                Text( "Add Box") .background(.regularMaterial)
+                    .cornerRadius(16)
             }
             .padding()
             NavigationLink{
@@ -71,13 +72,16 @@ struct ContentView: View {
                     
                     if let lookAtPoint = lookAtPoint {
                         Circle()
-                            .fill(Color.blue)
+                            .fill(Color.pink)
                             .frame(width: isWinking ? 100 : 40, height: isWinking ? 100 : 40)
                             .position(lookAtPoint)
                     }
                 }
             }label: {
+                
                 Text( "Eye Tracking View")
+                    .background(.regularMaterial)
+                    .cornerRadius(16)
             }
             
         }
