@@ -22,13 +22,13 @@ struct ContentView: View {
                     Image(.eye)
                         .resizable()
                         .frame(width:100, height: 100)
-//                        .border(.white)
+                    //                        .border(.white)
                     NavigationLink{
                         CustomARViewRepresentable()
                             .ignoresSafeArea()
                             .overlay(alignment: .bottom){
                                 ScrollView(.horizontal){
-                                    HStack{
+                                    HStack (alignment: .center){
                                         Button{
                                             ARManager.shared.actionStream.send(.removeAllAnchors)
                                         }label: {
@@ -48,13 +48,15 @@ struct ContentView: View {
                                                 color
                                                     .frame(width: 40, height: 40)
                                                     .padding()
+                                                    .background(.regularMaterial)
+                                                    .cornerRadius(16)
                                                 
                                             }
                                             
                                         }
                                         
                                     }
-                                }
+                                }.padding()
                             }
                     }label: {
                         Text( "Add Box")
@@ -66,15 +68,17 @@ struct ContentView: View {
                     .clipShape(Capsule())
                     NavigationLink{
                         ZStack(alignment: .bottom) {
-                                                    CustomARViewETContainer(eyeGazeActive: $eyeGazeActive, lookAtPoint: $lookAtPoint, isWinking: $isWinking)
-                                                        .ignoresSafeArea()
+                            CustomARViewETContainer(eyeGazeActive: $eyeGazeActive, lookAtPoint: $lookAtPoint, isWinking: $isWinking)
+                                .ignoresSafeArea()
                             Button(action: {
                                 eyeGazeActive.toggle()
                             }, label: {
                                 Text(eyeGazeActive ? "Stop" : "Start")
                                     .font(.headline)
-                                    .foregroundColor(.white)
                                     .padding()
+                                    .foregroundColor(eyeGazeActive ? .white: .iconblue)
+                                    .background(eyeGazeActive ? .iconblue: .white)
+                                    .cornerRadius(16)
                                 
                             })
                             
